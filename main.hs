@@ -1,8 +1,8 @@
 -- ====================================================================== --
 -- Codes for testing, comment out the main function to run the test.      --
 -- ====================================================================== --
-main = test
-import Debug.Trace
+-- main = test
+-- import Debug.Trace
 -- ====================================================================== --
 
 
@@ -91,6 +91,12 @@ blur x = case x of
 
 -- Function: bluring
 -- Purpose:  Return a blurred version of a cell.
+-- Woking:   This function is a recursive function, it calls itself to
+--             blur the cells in a block (of four units) and then combine
+--             them, together. It calls for the function `calc` to get 
+--             the correct new cell. This function also keep track of the
+--             position of the top left corner to assist the searching of
+--             neighbours at later stages.
 -- Example:  bluring (Block (Black 2) (Black 2) (Black 2) (Black 2)) =
 --             Block (Black 2) (Black 2) (Black 2) (Black 2)
 --           bluring (Block (Black 2) (Black 2) (Black 2) (White 2)) =
@@ -125,6 +131,7 @@ statsAdd (a, b) (c, d) = ((a + c), (b + d))
 -- Calc a cell - obtain the correct colour of the cell.
 -- Function: calc
 -- Purpose:  Return the correct colour of a given cell.
+-- Woking:   This function 
 -- Example:  calc (Block (Black 2) (Black 2) (Black 2) (Black 2)) (Black 2) 0 0 =
 --             Black 2
 -- Notes:    This function is used in the function `bluring`.
