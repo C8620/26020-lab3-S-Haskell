@@ -1,0 +1,14 @@
+"DS Equality Test"
+True
+"DS Inequality Test"
+True
+"DS Size Test"
+True
+"Blur Test Basic"
+True
+"Blur Test 1"
+True
+"Blur Test 2"
+True
+"Blur Test 3"
+True

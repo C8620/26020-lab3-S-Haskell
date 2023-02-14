@@ -131,7 +131,12 @@ statsAdd (a, b) (c, d) = ((a + c), (b + d))
 -- Calc a cell - obtain the correct colour of the cell.
 -- Function: calc
 -- Purpose:  Return the correct colour of a given cell.
--- Woking:   This function 
+-- Woking:   This function determines which coulur should the given unit
+--             cell be. It calls for the function `find` to get the 
+--             number of neighbouring units and the number of black ones
+--             in them. It then see if there are more than half neighbours
+--             have opposite colour, and return a new unit with the correct
+--             colour.
 -- Example:  calc (Block (Black 2) (Black 2) (Black 2) (Black 2)) (Black 2) 0 0 =
 --             Black 2
 -- Notes:    This function is used in the function `bluring`.
@@ -157,6 +162,10 @@ calc whole this x y = do
 -- Purpose:  Return the number of black cells and the total number of 
 --             cells that is the neighbour of a given cell indicated
 --             by the coordinates `x` and `y`.
+-- Woking:   This function is a recursive function, it calls itself to go
+--             through all the units of the whole quadtree and locate those
+--             that are the neighbours of the given cell, and count the number
+--             of neighbouring cells and the count of the black ones in them.
 -- Example:  find (Block (Black 2) (Black 2) (Black 2) (Black 2)) 0 0 2 0 0 =
 --             (2, 2)
 --           find (Block (Black 2) (Black 2) (Black 2) (White 2)) 0 0 2 0 0 =
@@ -182,6 +191,12 @@ find tree x y n i j = case tree of
 -- Near of two cells - check if two cells are near.
 -- Function: near
 -- Purpose:  Return True if two cells are near, False otherwise.
+-- Woking:   This function checks if two cells are near, based on the 
+--             coordinates of the top left corner of the two cells and
+--             the size of the two cells. The logic is that if the two
+--             cells are near (not same, overlapping, or sharing a corner),
+--             then they must be sharing a side (having a same x or y), and
+--             have the other vector identical, contained or extended.
 -- Example:  near 0 0 2 0 0 2 = False (same thing)
 --           near 0 0 2 2 0 2 = True  (same row)
 --           near 0 0 2 0 2 2 = True  (same column)
